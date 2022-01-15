@@ -22,4 +22,14 @@ class VideoModels extends Model
         'keterangan',
         'link'
     ];
+
+    public function pengajar()
+    {
+        return $this->belongsTo(PengajarModels::class, 'pengajar_id');
+    }
+
+    public function materi()
+    {
+        return $this->belongsTo(Materi::class, 'materi_id');
+    }
 }

@@ -64,12 +64,21 @@ Route::get('/admin/pengajar-data/delete/{id}', [PengajarControllers::class, 'del
 
 // Admin Laporan Data
 Route::get('/admin/laporan-data', [LaporanControllers::class, 'index']);
+
+// All dan Per Pengajar Laporan Data
+Route::get('/admin/all-laporan-data', [LaporanControllers::class, 'all']);
+Route::get('/admin/perpengajar-laporan-data', [LaporanControllers::class, 'perpengajar']);
+
 Route::get('/admin/add-laporan-data', [LaporanControllers::class, 'create']);
 Route::post('/admin/add-laporan-data-post', [LaporanControllers::class, 'createpost']);
 Route::get('/admin/laporan-data/edit/{id}', [LaporanControllers::class, 'edit']);
 Route::post('/admin/laporan-data/edit', [LaporanControllers::class, 'editpost']);
 Route::get('/admin/laporan-data/delete/{id}', [LaporanControllers::class, 'delete']);
-Route::get('/admin/laporan-data-generate-pdf/{id}', [LaporanControllers::class, 'generatePDF']);
+
+// All dan Per Pengajar Laporan Data
+Route::get('/admin/laporan-data-generate-pdf-all', [LaporanControllers::class, 'generatePDFAll']);
+Route::get('/admin/laporan-data-generate-pdf-pengajar', [LaporanControllers::class, 'generatePDFPengajar']);
+
 
 // Admin Kategori Data
 Route::get('/admin/kategori-data', [KategorControllers::class, 'index']);

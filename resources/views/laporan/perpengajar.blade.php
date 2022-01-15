@@ -24,19 +24,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <div class="wrapper-video-data" style="padding: 2.5% 2.5%;">
-        <h1>Laporan Data</h1>
-
+        <h1>Per Pengajar Laporan Data</h1>
+        <a href="/admin/add-laporan-data" class="btn btn-primary">Cetak</a>
         <div class="fswtele">
             <table class="table table-striped table-hover">
                 <tbody>
-                    <tr style="text-align: center;">
+                    <tr>
                         <td>
-                            <a href="/admin/all-laporan-data" class="btn-lg btn-primary">All</a>
+                            Pengajar
+                            <select class="form-control" name="pengajar">
+                                <option>1</option>
+                            </select>
                         </td>
                         <td>
-                            <a href="/admin/perpengajar-laporan-data" class="btn-lg btn-primary">Per Pengajar</a>
+                            Tanggal Mulai
+                            <input type="date" class="form-control" name="tanggal_mulai">
                         </td>
-                    </tr>               
+                        <td>
+                            Tanggal Akhir
+                            <input type="date" class="form-control" name="tanggal_akhir">
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

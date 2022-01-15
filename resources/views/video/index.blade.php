@@ -34,6 +34,7 @@
                 <tr>
                     <td>No</td>
                     <td>Judul</td>
+                    <td>Nama  Pengajar</td>
                     <td>Durasi</td>
                     <td>Link</td>
                     <td>Tanggal Dibuat</td>
@@ -43,6 +44,7 @@
                     <tr>
                         <td>{{ ($i + 1) }}</td>
                         <td>{{ $VideoData[$i]->judul }}</td>
+                        <td>{{ $VideoData[$i]->pengajar->nama}}</td>
                         <td>{{ $VideoData[$i]->durasi_jam }}</td>
                         <td>{{ $VideoData[$i]->link }}</td>
                         <td>{{ $VideoData[$i]->tgl_buat }}</td>

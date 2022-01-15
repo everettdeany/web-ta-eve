@@ -31,4 +31,9 @@ class PengajarModels extends Model
     {
         return $this->hasMany(LaporanModels::class, 'pengajar_id', 'nip');
     }
+    
+    public function video()
+    {
+        return $this->hasMany(VideoModels::class, 'pengajar_id', 'nip');
+    }
 }

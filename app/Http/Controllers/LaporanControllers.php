@@ -28,6 +28,36 @@ class LaporanControllers extends Controller
         }
     }
 
+    public function all(Request $request) {
+        $UserData = $request->session()->get('user-data');
+        if ( $UserData === null ) {
+            return redirect('/');
+        } else {
+            if ( ( $UserData[0]->roles !== 'admin' ) && ( $UserData[0]->roles !== 'petinggi' ) ) {
+                return redirect('/');
+            } else {
+                return view('laporan/all', [
+                    'LaporanData' => LaporanModels::paginate(10),
+                ]);
+            }
+        }
+    }
+
+    public function perpengajar(Request $request) {
+        $UserData = $request->session()->get('user-data');
+        if ( $UserData === null ) {
+            return redirect('/');
+        } else {
+            if ( ( $UserData[0]->roles !== 'admin' ) && ( $UserData[0]->roles !== 'petinggi' ) ) {
+                return redirect('/');
+            } else {
+                return view('laporan/perpengajar', [
+                    'LaporanData' => LaporanModels::paginate(10),
+                ]);
+            }
+        }
+    }
+
     public function create(Request $request) {
         $UserData = $request->session()->get('user-data');
         if ( $UserData === null ) {
@@ -143,9 +173,45 @@ class LaporanControllers extends Controller
         }
     }
 
-    public function generatePDF(Request $request, $id)
+    // public function generatePDF(Request $request, $id)
+    // {
+    //     $models = LaporanModels::where('id', $id)->first();
+    //     $videos = VideoModels::where('pengajar_id', $models->pengajar_id)->get();
+                
+    //     $data = [
+    //         'title' => 'Laporan NF Comp',
+    //         'date' => date('m/d/Y'), 
+    //         'pengajar' => $models->pengajar->nama, 
+    //         'bulan' => $models->bulan, 
+    //         'tahun' => $models->tahun,
+    //         'defisit_bln_lalu' => $models->defisit_bln_lalu,
+    //         'jml_durasi' => $models->jml_durasi,
+    //         'defisit' => $models->defisit,
+    //         'videos' => $videos
+    //     ];
+
+    //     $pdf = PDF::loadView('laporan/laporanpdf', $data);
+
+    //     return $pdf->download($models->pengajar->nama.'.pdf');
+    // }
+
+    public function generatePDFAll(Request $request)
     {
-        $models = LaporanModels::where('id', $id)->first();
+        $VideoData = VideoModels::all();
+        
+        $data = [
+            'tanggal_mulai' => $request['tanggal_mulai'],
+            'tanggal_akhir' => $request['tanggal_akhir'],
+        ];
+
+        $pdf = PDF::loadView('laporan/laporanpdfall', $data, ['VideoData'=>$VideoData]);
+
+        return $pdf->download('Laporan Data.pdf');
+    }
+
+    public function generatePDFPengajar(Request $request)
+    {
+        $LaporanData = LaporanModels::all();
         $videos = VideoModels::where('pengajar_id', $models->pengajar_id)->get();
                 
         $data = [

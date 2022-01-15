@@ -22,4 +22,9 @@ class Materi extends Model
         'deskripsi',
         'note'
     ];
+
+    public function video()
+    {
+        return $this->hasMany(VideoModels::class, 'materi_id', 'id');
+    }
 }

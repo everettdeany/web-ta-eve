@@ -24,9 +24,9 @@ class VideoControllers extends Controller
                 return redirect('/');
             } else {
                 return view('video/index', [
-                    'VideoData' => VideoModels::paginate(10)
+                    'VideoData' => VideoModels::orderBy('id', 'desc')->paginate(10)    
                 ]);
-            }
+            } 
         }
     }
 
@@ -83,7 +83,7 @@ class VideoControllers extends Controller
                 $Video->materi_id = $_POST['materi'];
                 $Video->tgl_buat = $_POST['tanggal_dibuat'];
                 $Video->judul = $_POST['judul'];
-                $Video->durasi_jam = date( 'H:i:s', strtotime($_POST['durasi_jam'].':'.$_POST['durasi_menit'].':'.$_POST['durasi_detik']) );
+                $Video->durasi_jam = date('H:i:s', strtotime($_POST['durasi_jam'].':'.$_POST['durasi_menit'].':'.$_POST['durasi_detik']) );
                 $Video->keterangan = $_POST['keterangan'];
                 $Video->link = $_POST['link-video'];
                 
